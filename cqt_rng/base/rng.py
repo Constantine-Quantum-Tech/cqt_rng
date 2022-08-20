@@ -13,13 +13,14 @@ class RNG():
         self.entropy_source = entropy_source
         self.postprocessor = postprocessor
 
-    def generate(self, length = 1024, unbiased = False):
+    def generate(self, length = 1024):
         """
         TODO
         """
         dep_seq_len = self.entropy_source.dep_seq_len
         seq_len = self.entropy_source.seq_len
         bitstring = np.array([], dtype=np.int8)
+        
         with tqdm(total=length) as pbar:
             while len(bitstring) < length:
                 missing_length = length - len(bitstring)

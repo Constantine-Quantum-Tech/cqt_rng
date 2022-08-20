@@ -14,11 +14,10 @@ class BosonSampler(EntropySource):
         self.input_dict = kwargs.get("input_dict")
 
         if self.unitary is None and self.input_dict is None:
-            # self.unitary = block_diag(shi_unitary5[:, ::-1], shi_unitary5)
             self.unitary = shi_unitary5
             self.input_dict = shi_input_dict
-        elif self.unitary is None or self.input_dict is None:
-            raise ValueError("No unitary or input_dict given")
+        elif self.unitary is None or self.unitary is None:
+            raise Exception("Unitary and input_dict needed!")
         else:
             self.input_dict = OrderedDict(self.input_dict)
         
@@ -27,6 +26,7 @@ class BosonSampler(EntropySource):
                 raise ValueError("Incompatible input and unitary!")
 
         self.probs_ = BosonSampler.get_theo_prob(self.input_dict, self.unitary)
+
         for k in self.probs_.keys(): # fixing small prob errors
             if np.isclose(sum(self.probs_[k][1]), 1):
                 self.probs_[k][1][0] = 1 - sum(self.probs_[k][1]) + self.probs_[k][1][0]
