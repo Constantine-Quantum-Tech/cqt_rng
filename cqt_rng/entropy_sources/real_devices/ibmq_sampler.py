@@ -1,5 +1,4 @@
-from ...base.entropy_source import entropy_sources
+from ...base.entropy_source import EntropySource
 
-
-class IBMQSampler(entropy_sources):
+class IBMQSampler(EntropySource):
 	pass

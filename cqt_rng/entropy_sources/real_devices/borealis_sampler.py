@@ -1,5 +1,3 @@
-from ...base.entropy_source import entropy_sources
-
-
-class BorealisSampler(entropy_sources):
+from ...base.entropy_source import EntropySource
+class BorealisSampler(EntropySource):
 	pass
