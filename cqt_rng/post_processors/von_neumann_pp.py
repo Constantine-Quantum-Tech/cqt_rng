@@ -1,4 +1,4 @@
-from cqt_rng.base.post_processor import PostProcessor
+from ..base.post_processor import PostProcessor
 import numpy as np
 
 class VonNeumannPP(PostProcessor):
@@ -16,3 +16,4 @@ class VonNeumannPP(PostProcessor):
 		arr = np.where(bits_1 == bits_2, np.nan * np.ones_like(bits_1), arr)
         
 		return arr[~np.isnan(arr)].astype(np.int8)
+

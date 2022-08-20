@@ -17,13 +17,12 @@ setup(
        # the name must match the folder name 'verysimplemodule'
         name="cqt_rng", 
         version=VERSION,
-	author='',
-	author_email='',
+        author='',
+        author_email='',
         description=DESCRIPTION,
         long_description=LONG_DESCRIPTION,
         packages=find_packages(),
-        install_requires=get_requires()
-        
+        install_requires=get_requires(),
         keywords=['rng', 'quantum'],
         classifiers= [
             "Development Status :: 3 - Alpha",
