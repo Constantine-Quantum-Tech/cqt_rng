@@ -1,0 +1,7 @@
+qiskit
+thewalrus
+strawberryfields
+numpy
+scipy
+matplotlib
+
