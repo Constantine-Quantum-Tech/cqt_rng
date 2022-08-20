@@ -1,13 +1,13 @@
 
-from cqt_rng.base.post_processor import PostProcessor
-from von_neumann_pp import VonNeumannPP
+from ..base.post_processor import PostProcessor
+from .von_neumann_pp import VonNeumannPP
 
 class CQTPP(PostProcessor):
 	def __init__(self, **kwargs):
 		self.dep_seq_len = kwargs.get("dep_seq_len")
 		if self.dep_seq_len is None:
 			self.dep_seq_len = 1
-			
+
 	def postprocess(self, sample_1, sample_2):
 		# if unbiased and dep_seq_len > 1:
 		# new_bitstring = np.array([], dtype=np.int8)
