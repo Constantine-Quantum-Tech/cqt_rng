@@ -1,4 +1,4 @@
-from package.cqt_rng.base.entropy_source import EntropySource
+from ...base.entropy_source import EntropySource
 from qiskit import QuantumCircuit, transpile, Aer
 import numpy as np
 
