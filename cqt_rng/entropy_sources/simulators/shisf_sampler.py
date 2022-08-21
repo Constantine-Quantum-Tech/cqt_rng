@@ -7,6 +7,15 @@ import numpy as np
 
 
 class ShiSFSampler(EntropySource):
+    """Simulates the Shi. and al. experiment on Strawberry Fields.
+
+    Parameters:
+        nb_modes (int, optional): Number of modes of the interferometer (should be an even number). Default to `6`.
+        unitary_top (np.ndarray, optional): The unitary to apply on the top-half of the modes. Default to randomly generated haar matrix.
+        unitary_bottom (np.ndarray, optional): The unitary to apply on the bottom-half of the modes. Default to randomly generated haar matrix.
+
+    """
+
     def __init__(self, **kwargs):
 
         self.nb_modes = kwargs.get("nb_modes")

@@ -2,8 +2,16 @@ from ...base.entropy_source import EntropySource
 from qiskit import QuantumCircuit, transpile, Aer
 import numpy as np
 
+
 class UniversalQCSampler(EntropySource):
-    
+    """Sample taken from a
+
+    Parameters:
+        nb_qubits (int, optional): the number of qubits of the circuit. Defaults to `5`.
+        operation ("rotation" | "hamadard", optional): the gate applied on the qubits. Defaults to hadamards.
+        angle (float, optional): the rotation angle (around y-axis). Necessary in the case the operation is rotation.
+    """
+
     def __init__(self, **kwargs):
         nb_qubits = kwargs.get("nb_qubits")
         operation = kwargs.get("operation")
@@ -13,11 +21,13 @@ class UniversalQCSampler(EntropySource):
             self.operation = "hadamard"
         elif operation == "rotation":
             if angle is None:
-                raise ValueError("You must define an angle when choosing the 'rotation' operation.")
-                
+                raise ValueError(
+                    "You must define an angle when choosing the 'rotation' operation."
+                )
+
             self.angle = angle
             self.operation = "rotation"
-        
+
         self.nb_qubits = 5 if nb_qubits is None else nb_qubits
 
         self.dep_seq_len = 1
@@ -38,9 +48,9 @@ class UniversalQCSampler(EntropySource):
         qc.measure_all()
 
         # Transpile for simulator
-        simulator = Aer.get_backend('aer_simulator')
+        simulator = Aer.get_backend("aer_simulator")
         transpiled_qc = transpile(qc, simulator)
-        result = simulator.run(transpiled_qc, shots = shots, memory = True).result()
+        result = simulator.run(transpiled_qc, shots=shots, memory=True).result()
         return result.get_memory(transpiled_qc)
 
     def sample(self, length):

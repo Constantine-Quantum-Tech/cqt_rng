@@ -5,7 +5,7 @@ This is `Constantine Quantum Technologies`'s solution to ORCA Computing's challe
 ## Team
 
 - Abdellah Tounsi
-  [![](https://img.shields.io/badge/Abdellah-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/980795511927885844) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Abduhu)
+  [![](https://img.shields.io/badge/Abdellah-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/980795511927885844) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:abdellah.tounsi@umc.edu.dz) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Abduhu)
 - Amina Sadik
   [![](https://img.shields.io/badge/Amina-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/538380103722336283) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Amouna133)
 - Mohamed Messaoud Louamri

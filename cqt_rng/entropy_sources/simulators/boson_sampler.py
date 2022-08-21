@@ -10,6 +10,27 @@ from collections import OrderedDict
 
 
 class BosonSampler(EntropySource):
+    """A boson sampling simulator.
+
+    Parameters:
+        unitary (np.ndarray, optional): the (n, n) interferometer matrix. Defaults to Shi et al.
+         type matrix.
+        input_dict (dict[str, float], optional): a dictionnary where the keys are string
+        which represents the number of photons in each mode. And the values
+        are the probabilities for each input. Default to a Shi et al. input.
+
+    Examples:
+        To simulate sending 1 photon in the first mode, 2 in the second
+        mode, 3 in the third mode through a 3 mode interferometer::
+
+            input_dict = {"123": 1}
+
+        To simulate sending either a photon in the first mode or a photon in the second
+        mode with 50% probability each a 2 mode interferometer::
+
+            input_dict = {"10": 0.5, "01": 0.5}
+    """
+
     def __init__(self, **kwargs):
         self.unitary = kwargs.get("unitary")
         self.input_dict = kwargs.get("input_dict")
@@ -42,6 +63,15 @@ class BosonSampler(EntropySource):
 
     @staticmethod
     def get_theo_prob(input_dict, unitary):
+        """Takes an input_dict and a unitary and output the probabilities of the sampling outcome.
+
+        Returns:
+            dict([str, [[str], [float], [float]]]): a dictionnary where the keys are the same as the input keys. The values are a list of three lists.
+            The first list lists all the possible outcomes. The second list gives the probability
+            for each outcomes given that the initial state is guaranteed to be in the key state.
+            The third list gives the probabilities of each outcome.
+
+        """
         input_states = list(input_dict.keys())
         dim = np.shape(unitary)[0]
         output = dict()

@@ -1,8 +1,12 @@
 import numpy as np
 
+
 def generate_haar_unitary(dim):
-    """Generate a Haar-random matrix using the QR decomposition.
+    """Generate a (dim, dim) Haar-random matrix using the QR decomposition.
     Source: https://pennylane.ai/qml/demos/tutorial_haar_measure.html
+
+    Parameters:
+        dim (int): the dimension of the matrix.
     """
     # Step 1
     A, B = np.random.normal(size=(dim, dim)), np.random.normal(size=(dim, dim))
