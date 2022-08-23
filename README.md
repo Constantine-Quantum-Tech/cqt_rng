@@ -43,10 +43,11 @@ And 2 real quantum entropy sources:
 - `BorealisSampler`
 - `IBMQSampler`
 
-We also implemented two postprocessors:
+We also implemented three postprocessors:
 
 - `VonNeumannPP`
 - `CQTPP`
+- `NoPostProcess`
 
 Once you have chosen you entropy source and post-processor, you just need 2 lines of code (without counting the imports 😅) to generate random numbers:
 

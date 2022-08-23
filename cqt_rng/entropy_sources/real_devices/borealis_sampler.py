@@ -6,7 +6,7 @@ import numpy as np
 
 
 class BorealisSampler(EntropySource):
-    """Sample taken from a Borealis."""
+    """Sample taken from Borealis."""
 
     def __init__(self, **kwargs):
         self.dep_seq_len = 216
@@ -14,6 +14,8 @@ class BorealisSampler(EntropySource):
         self.name = "BorealisSampler"
 
     def sample(self, length):
+        shots = np.max([2 * length, 2])
+
         eng = sf.RemoteEngine("borealis")
         device = eng.device
         gate_args_list = borealis_gbs(device, modes=216, squeezing="high")
@@ -28,7 +30,6 @@ class BorealisSampler(EntropySource):
                 BSgate(p[2 * i + 2], np.pi / 2) | (q[n[i + 1]], q[n[i]])
             MeasureFock() | q[0]
 
-        shots = 10
         results = eng.run(prog, shots=shots, crop=True)
         samples = results.samples
         return np.ravel(samples)

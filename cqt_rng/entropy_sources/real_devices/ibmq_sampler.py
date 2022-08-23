@@ -44,15 +44,15 @@ class IBMQSampler(EntropySource):
         print("least busy backend: ", self.backend)
         print("Number of qubits: ", self.backend.configuration().n_qubits)
 
-        self.nb_qubit = self.backend.configuration().n_qubits
+        self.nb_qubits = self.backend.configuration().n_qubits
         self.dep_seq_len = 1
-        self.seq_len = self.nb_qubit
+        self.seq_len = self.nb_qubits
 
     def _execute(self, length):
 
         print(f"Running the job on {self.backend} with {self.nb_qubits} qubits!")
 
-        shots = np.max([length // self.nb_qubits, 2])
+        shots = np.max([2 * length // self.nb_qubits, 2])
 
         qc = QuantumCircuit(self.nb_qubits)
         for i in range(self.nb_qubits):

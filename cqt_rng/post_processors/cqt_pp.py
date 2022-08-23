@@ -4,6 +4,12 @@ import numpy as np
 
 
 class CQTPP(PostProcessor):
+    """Implementation of the CQTPP
+
+    Parameters:
+        dep_seq_len (int): The length of the dependent sequences.
+    """
+
     def __init__(self, **kwargs):
         self.__dep_seq_len = kwargs.get("dep_seq_len")
         if self.__dep_seq_len is None:

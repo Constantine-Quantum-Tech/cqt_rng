@@ -5,6 +5,8 @@ from tqdm import tqdm
 from .entropy_source import EntropySource
 from .post_processor import PostProcessor
 from time import gmtime, strftime
+from os import mkdir
+from os.path import isdir
 
 
 class RNG:
@@ -55,6 +57,8 @@ class RNG:
 
                 big_sample = self.entropy_source.sample(gen_len)
                 if self.entropy_source.name != "Loader" and self.save_sample:
+                    if not isdir("./data/"):
+                        mkdir("./data/")
                     fname = (
                         "data/"
                         + self.entropy_source.name
@@ -63,8 +67,9 @@ class RNG:
                     )
                     np.save(fname, big_sample)  # saving the sample
 
-                sample_1 = big_sample[: gen_len // 2]
-                sample_2 = big_sample[gen_len // 2 :]
+                total_length = len(big_sample)
+                sample_1 = big_sample[: total_length // 2]
+                sample_2 = big_sample[total_length // 2 :]
 
                 new_bitstring = self.postprocessor.postprocess(sample_1, sample_2)
                 bitstring = np.append(bitstring, new_bitstring)
