@@ -4,7 +4,7 @@ import numpy as np
 
 
 class UniversalQCSampler(EntropySource):
-    """Sample taken from a
+    """Sample taken from a qiskit Aer's simulator (using the Qubit-based approach)
 
     Parameters:
         nb_qubits (int, optional): the number of qubits of the circuit. Defaults to `5`.
@@ -13,6 +13,7 @@ class UniversalQCSampler(EntropySource):
     """
 
     def __init__(self, **kwargs):
+        self.name = "UniversalQCSampler"
         nb_qubits = kwargs.get("nb_qubits")
         operation = kwargs.get("operation")
         angle = kwargs.get("angle")
@@ -31,7 +32,7 @@ class UniversalQCSampler(EntropySource):
         self.nb_qubits = 5 if nb_qubits is None else nb_qubits
 
         self.dep_seq_len = 1
-        self.seq_len = nb_qubits
+        self.seq_len = self.nb_qubits
 
     def _simulate(self, length):
 
@@ -58,4 +59,4 @@ class UniversalQCSampler(EntropySource):
 
         bitstring_str = "".join(memory)
 
-        return np.array(list(bitstring_str)).astype(np.int8)
+        return np.array(list(bitstring_str)).astype(np.int8)[:length]

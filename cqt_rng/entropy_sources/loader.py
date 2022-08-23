@@ -14,10 +14,11 @@ class Loader(EntropySource):
     """
 
     def __init__(self, **kwargs):
+        self.name = "Loader"
         self.__data = kwargs.get("data")
         self.__is_string = kwargs.get("is_string")
-        self.__dep_seq_len = kwargs.get("dep_seq_len")
-        self.__seq_len = kwargs.get("seq_len")
+        self.dep_seq_len = kwargs.get("dep_seq_len")
+        self.seq_len = kwargs.get("seq_len")
 
         self.__curr_idx = 0
 
@@ -26,11 +27,11 @@ class Loader(EntropySource):
         if self.__is_string is None:
             self.__is_string = False
 
-        if self.__dep_seq_len is None:
-            self.__dep_seq_len = 1
+        if self.dep_seq_len is None:
+            self.dep_seq_len = 1
 
-        if self.__seq_len is None:
-            self.__seq_len = 1
+        if self.seq_len is None:
+            self.seq_len = 1
 
         if self.__is_string:
             ret = []

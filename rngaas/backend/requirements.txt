@@ -1,0 +1,4 @@
+cqt_rng
+flask
+flask-cors
+gunicorn

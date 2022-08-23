@@ -1,6 +1,7 @@
-data/borealis.npy
-
+challenge/data/borealis.npy
+rngaas/backend/output/
 .vscode/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

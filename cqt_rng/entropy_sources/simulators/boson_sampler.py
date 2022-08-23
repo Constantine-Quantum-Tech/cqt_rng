@@ -32,6 +32,7 @@ class BosonSampler(EntropySource):
     """
 
     def __init__(self, **kwargs):
+        self.name = "BosonSampler"
         self.unitary = kwargs.get("unitary")
         self.input_dict = kwargs.get("input_dict")
 
@@ -84,8 +85,9 @@ class BosonSampler(EntropySource):
 
             total_photons = np.sum(inp_state_array)
             output_states = generate_output_states(total_photons, dim)
-
-            for out_state_str in output_states:
+            output_probs = np.zeros(len(output_states))
+            output_global_probs = np.zeros(len(output_states))
+            for i, out_state_str in enumerate(output_states):
                 out_state_array = np.array(list(out_state_str)).astype(int)
 
                 denum = np.prod(factorial(inp_state_array)) * np.prod(
@@ -99,17 +101,14 @@ class BosonSampler(EntropySource):
 
                 theo_prob = np.abs(perm(subm)) ** 2 / denum
                 global_theo_prob = theo_prob * input_dict[inp_state_str]
+                output_probs[i] = theo_prob
+                output_global_probs[i] = global_theo_prob
                 if output.get(inp_state_str) is None:
                     output[inp_state_str] = [
-                        [out_state_str],
-                        [theo_prob],
-                        [global_theo_prob],
+                        output_states,
+                        output_probs,
+                        output_global_probs,
                     ]
-                else:
-                    output[inp_state_str][0].append(out_state_str)
-                    output[inp_state_str][1].append(theo_prob)
-                    output[inp_state_str][2].append(global_theo_prob)
-
         return output
 
     def _simulate(self, shots):
@@ -119,7 +118,10 @@ class BosonSampler(EntropySource):
 
         res = []
         for es in entangled_state:
-            output = np.random.choice(self.probs_[es][0], p=self.probs_[es][1])
+            output = np.random.choice(
+                self.probs_[es][0],
+                p=np.where(self.probs_[es][1] < 0, 0, self.probs_[es][1]),
+            )
             bs = [int(o) for o in output]
             res.extend(bs)
         return np.array(res)

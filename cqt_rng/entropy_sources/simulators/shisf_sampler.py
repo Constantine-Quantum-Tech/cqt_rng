@@ -17,7 +17,7 @@ class ShiSFSampler(EntropySource):
     """
 
     def __init__(self, **kwargs):
-
+        self.name = "ShiSFSampler"
         self.nb_modes = kwargs.get("nb_modes")
         self.unitary_top = kwargs.get("unitary_top")
         self.unitary_bottom = kwargs.get("unitary_bottom")
@@ -46,8 +46,8 @@ class ShiSFSampler(EntropySource):
                 f"Wrong unitary dimensions expect to be ({int(self.nb_modes / 2)},{int(self.nb_modes / 2)}) for top and bottom!"
             )
 
-        self.dep_seq_len = self.nb_modes * 2
-        self.seq_len = self.nb_modes * 2
+        self.dep_seq_len = self.nb_modes
+        self.seq_len = self.nb_modes
 
     def _successful_entanglement(self, sample):
         nb_modes = np.size(sample)
@@ -92,8 +92,8 @@ class ShiSFSampler(EntropySource):
         return sample
 
     def sample(self, length):
-        shots = int(np.ceil(length / self.seq_len))
-        ret = np.array()
+        shots = length // self.seq_len
+        ret = np.array([])
         for _ in range(shots):
             ret = np.append(ret, self._run_experiment())
 

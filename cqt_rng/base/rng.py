@@ -4,6 +4,7 @@ import numpy as np
 from tqdm import tqdm
 from .entropy_source import EntropySource
 from .post_processor import PostProcessor
+from time import gmtime, strftime
 
 
 class RNG:
@@ -14,6 +15,7 @@ class RNG:
     Parameters:
         entropy_source (EntropySource): The entropy source to sample from.
         postprocessor (PostProcessor): The post-processor.
+        save_sample (bool, option): Whether to save the sample or not. Defaults to true.
 
     Examples:
         Generating a random bitstring of length 1024 using the BosonSampling as
@@ -23,9 +25,15 @@ class RNG:
             rng1.generate()
     """
 
-    def __init__(self, entropy_source: EntropySource, postprocessor: PostProcessor):
+    def __init__(
+        self,
+        entropy_source: EntropySource,
+        postprocessor: PostProcessor,
+        save_sample=True,
+    ):
         self.entropy_source = entropy_source
         self.postprocessor = postprocessor
+        self.save_sample = save_sample
 
     def generate(self, length=1024) -> np.ndarray:
         """Generates a random bitstring.
@@ -36,7 +44,6 @@ class RNG:
         Returns:
             nd.array: the random bitstring.
         """
-        dep_seq_len = self.entropy_source.dep_seq_len
         seq_len = self.entropy_source.seq_len
         bitstring = np.array([], dtype=np.int8)
 
@@ -44,10 +51,21 @@ class RNG:
             while len(bitstring) < length:
                 missing_length = length - len(bitstring)
 
-                gen_len = missing_length + (seq_len - (missing_length % seq_len))
+                gen_len = 2 * seq_len * ((missing_length // seq_len) + 1)
 
-                sample_1 = self.entropy_source.sample(gen_len)
-                sample_2 = self.entropy_source.sample(gen_len)
+                big_sample = self.entropy_source.sample(gen_len)
+                if self.entropy_source.name != "Loader" and self.save_sample:
+                    fname = (
+                        "data/"
+                        + self.entropy_source.name
+                        + "_"
+                        + strftime("%Y-%m-%d_%H-%M-%S", gmtime())
+                    )
+                    np.save(fname, big_sample)  # saving the sample
+
+                sample_1 = big_sample[: gen_len // 2]
+                sample_2 = big_sample[gen_len // 2 :]
+
                 new_bitstring = self.postprocessor.postprocess(sample_1, sample_2)
                 bitstring = np.append(bitstring, new_bitstring)
                 pbar.update(len(new_bitstring))
