@@ -1,35 +1,20 @@
-# Constantine Quantum Technologies' RNG package
+<img align="right" width="70" src="https://raw.githubusercontent.com/Constantine-Quantum-Tech/tqsim/main/images/cqtech_logo.png" alt="CQTech">
 
-[![PyPi version](https://shields.io/pypi/v/cqt_rng)]()[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](http://colab.research.google.com/github/CQTech-womanium-hackathon/Random-number-generation-using-boson-sampling---ORCA-Computing/blob/main/challenge/demo.ipynb)
+# cqt_rng
 
-This is `Constantine Quantum Technologies`'s solution to ORCA Computing's challenge `Random number generation using boson sampling`.
+[![Version](https://img.shields.io/pypi/v/cqt_rng?style=flat-square)](https://pypi.org/project/cqt_rng/) [![License](https://img.shields.io/pypi/dm/cqt_rng?style=flat-square)](https://pypi.org/project/cqt_rng/) [![License](https://img.shields.io/github/license/Constantine-Quantum-Tech/cqt_rng?style=flat-square)](LICENSE)
 
-## Team
+cqt_rng is an open-source package designed to generate random numbers using quantum entropy sources. This library leverages the principles of quantum mechanics to generate truly random numbers, which are fundamental to many areas of science and technology, including cryptography, simulation, and modeling.
 
-- Abdellah Tounsi
-  [![](https://img.shields.io/badge/Abdellah-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/980795511927885844) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:abdellah.tounsi@umc.edu.dz) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Abduhu)
-- Amina Sadik
-  [![](https://img.shields.io/badge/Amina-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/538380103722336283) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sadik.amina.mp@gmail.com) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Amouna133)
-- Mohamed Messaoud Louamri
-  [![](https://img.shields.io/badge/Mohamed-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/296402073262751744) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mm.louamri@gmail.com) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mmlouamri)
-- Nacer eddine Belaloui
-  [![](https://img.shields.io/badge/Nacer-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/980786019949490217) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:n.aityahia.belaloui@gmail.com) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Belaloui)
-- Wafa Makhlouf
-  [![](https://img.shields.io/badge/Wafa-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/996400056875876493) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:makhloufw98@gmail.com) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/wafamakhlouf)
-- Zakaria Benhaddouche
-  [![](https://img.shields.io/badge/Zakaria-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/1002915392601215016) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:) [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)]()
+## Installation
 
-## Getting started
+You can install cqt_rng from pip using
 
-### Installation
-
-To install the package, run:
-
-```console
-$ pip install cqt_rng
+```bash
+pip install --upgrade cqt_rng
 ```
 
-### Usage
+## Usage
 
 To start generating random numbers, you need to pick an entropy source and a post-processor.
 There are 3 simulated quantum entropy sources:
@@ -64,12 +49,6 @@ You can also use your custom entropy sources by implementing them as subclasses 
 
 _For more example, please refer to the [documentation]()._
 
-### More on RNG
+## License
 
-An in-depth explanation of why we need RNG, the theory behind it, and what the package does can be found in the `challenge/demo.ipynb` notebook (which you can launch directly on google colab by clicking the button below).
-
-<center markdown="1">
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](http://colab.research.google.com/github/CQTech-womanium-hackathon/Random-number-generation-using-boson-sampling---ORCA-Computing/blob/main/challenge/demo.ipynb)
-
-</center>
+Copyright © 2022-2023, [Constantine Quantum Technologies](https://cqtech.org). Released under the [Apache License 2.0](LICENSE).
